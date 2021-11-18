@@ -24,6 +24,7 @@ library(multidplyr)
 library(showtext)
 library(tidyverse)
 library(sessioninfo)
+library(extrafont)
 ```
 
 The data sets are quite large, so below we set up options for parallel computing as well as options for plots.
@@ -65,8 +66,8 @@ if (!dir.exists(here("data")) || length(list.files(here("data"))) == 0 ){
   dir.create("data/", FALSE, TRUE)
   
   download.file("https://osf.io/h87sb/download", here("data", "qualtrics.csv.gz"), mode = "wb" )
-  download.file("https://osf.io/c2e93/download", here("data", "telemetry-apex-legends.csv.gz"), mode = "wb")
-  download.file("https://osf.io/xam5t/download", here("data", "telemetry-outriders.csv.gz"), mode = "wb")
+  download.file("https://osf.io/c2e93/download", here("data", "telemetry_apex_legends.csv.gz"), mode = "wb")
+  download.file("https://osf.io/xam5t/download", here("data", "telemetry_outriders.csv.gz"), mode = "wb")
 }
 ```
 
@@ -255,15 +256,17 @@ d <-
 Next, like in the original paper, we exclude anyone who doesn't have any survey responses to the variables we need.
 In our case, because there's fewer variables that we require, we can use more responses.
 Overall, there's few people who don't have any usable responses.
+Note: There was some slight preprocessing to preserve participants' privacy.
+That means the current sample only includes those who constented to participate, meaning the top row tells us the initial sample size.
 
 ```{r}
-# Person-wave level indicator if person answered any survey questions at wave
+# Person-wave level indicator if person answered to the DV of interest for that wave
 d$Responded <- apply(
-  select(d, Angry:hours_est, Age:Experience), 1,
+  select(d, Angry), 1,
   function(x) sum(!is.na(x)) > 0
 )
 
-# Person-level indicator of how many waves responded to
+# Person-level indicator of how many waves responded to angry item
 d <- d %>%
   group_by(Game, pid) %>%
   mutate(
@@ -656,21 +659,17 @@ d %>%
   kable_styling(full_width = FALSE, font_size = 12)
 ```
 
-Number of participants per game.
+In what follows, we'll work with hourly play per day.
+Therefore, need to divide the time estimates by 14.
 ```{r}
-d %>%
-  filter(Responded) %>% 
-  count(Game, pid) %>% 
-  count(Game, n) %>% 
-  bind_rows(
-    .,
-    tibble(
-      Game = "Overall",
-      n = NA,
-      nn = sum(.$nn)
+d <- 
+  d %>% 
+  mutate(
+    across(
+      c(Hours, hours_est),
+      ~ .x / 14
     )
   )
-
 ```
 
 
@@ -678,5 +677,5 @@ d %>%
 
 Last, we save the cleaned data file.
 ```{r}
-write_csv(d, file = here("data", "cleaned-data.csv.gz"))
+write_rds(d, file = here("data", "cleaned_data.rds"), compress = "gz")
 ```
