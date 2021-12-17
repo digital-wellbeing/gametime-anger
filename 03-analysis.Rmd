@@ -1,1 +1,249 @@
 # Analysis
+
+```{r}
+library(lavaan)
+library(tidyverse)
+library(here)
+library(ggplot2)
+library(scales)
+library(showtext)
+library(ggstance)
+library(extrafont)
+library(kableExtra)
+```
+
+Set figure options like before.
+```{r}
+# Plotting options
+Font <- "Titillium Web"
+font_add_google(Font, Font)
+theme_set(
+  theme_linedraw(
+    base_family = Font,
+    base_size = 12
+  ) +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    )
+)
+col1 <- "#2980b9"
+col2 <- "#2980b9"
+```
+
+Load the cleaned data set from the previous section.
+```{r}
+data_path <- here("data", "cleaned_data.rds")
+if (file.exists(data_path)) {
+  d <- read_rds(file = data_path)
+} else {
+  stop(str_glue("{data_path} doesn't exist, run `01-process.Rmd` to create it."))
+}
+```
+
+The syntax for lavaan.
+Note that we constrain the cross-lagged effects to be the same, but within each game (so the effects can be different for the games).
+See explanation here: <https://lavaan.ugent.be/tutorial/groups.html>
+```{r}
+riclpm_constrained <- "
+  # Create between components (random intercepts)
+  RIx =~ 1*x1 + 1*x2 + 1*x3
+  RIy =~ 1*y1 + 1*y2 + 1*y3
+
+  # Create within-person centered variables
+  wx1 =~ 1*x1
+  wx2 =~ 1*x2
+  wx3 =~ 1*x3
+  wy1 =~ 1*y1
+  wy2 =~ 1*y2
+  wy3 =~ 1*y3
+
+  # Estimate the lagged effects between the within-person centered variables (constrained).
+  wx2 ~ c(bxa, bxo)*wx1 + c(gxa, gxo)*wy1
+  wy2 ~ c(gya, gyo)*wx1 + c(bya, byo)*wy1
+  wx3 ~ c(bxa, bxo)*wx2 + c(gxa, gxo)*wy2
+  wy3 ~ c(gya, gyo)*wx2 + c(bya, byo)*wy2
+
+  # Estimate the covariance between the within-person centered
+  # variables at the first wave.
+  wx1 ~~ wy1 # Covariance
+
+  # Estimate the covariances between the residuals of the
+  # within-person centered variables (the innovations).
+  wx2 ~~ wy2
+  wx3 ~~ wy3
+
+  # Estimate the variance and covariance of the random intercepts.
+  RIx ~~ RIx
+  RIy ~~ RIy
+  RIx ~~ RIy
+
+  # Estimate the (residual) variance of the within-person centered variables.
+  wx1 ~~ wx1 # Variances
+  wy1 ~~ wy1
+  wx2 ~~ wx2 # Residual variances
+  wy2 ~~ wy2
+  wx3 ~~ wx3
+  wy3 ~~ wy3
+"
+```
+
+Transform the data to wide format for lavaan to take the arguments above.
+```{r}
+d_riclpm <- d %>%
+  select(
+    Game, pid, wid,
+    Hours, Angry
+  ) %>%
+  # Long format on anger (outcome)
+  pivot_longer(
+    Angry,
+    names_to = "y_var", values_to = "y"
+  ) %>%
+  # Long format on hours (predictor)
+  pivot_longer(
+    Hours,
+    names_to = "x_var", values_to = "x"
+  ) %>% 
+  pivot_wider(
+    names_from = wid,
+    values_from = c(x,y),
+    names_sep = ""
+  )
+```
+
+Fitting the model.
+```{r}
+lavaan_fit <- lavaan(
+  riclpm_constrained,
+  data = d_riclpm,
+  missing = "ml",
+  meanstructure = TRUE,
+  int.ov.free = TRUE,
+  group = "Game"
+)
+```
+
+Inspecting summary.
+```{r}
+summary(lavaan_fit)
+```
+
+Get parameter estimates for plot.
+Note: The standardized estimates aren't the same across waves because we didn't put equality constraints on the variances -- only the unstandardized ones are identical.
+```{r}
+params <- 
+  bind_rows(
+    parameterestimates(lavaan_fit) %>% 
+      mutate(Type = "Unstandardized"),
+    standardizedsolution(lavaan_fit) %>%
+      rename(est = est.std) %>% 
+      mutate(Type = "Standardized")
+  ) %>% 
+  as_tibble() %>% 
+  rename(Game = group) %>% 
+  mutate(
+    Game = factor(if_else(Game == 1, "Apex Legends", "Outriders"))
+  ) %>% 
+  mutate(
+    label = if_else(lhs == "RIx" & rhs == "RIy", "Covariance", label)
+  ) %>% 
+  mutate(
+    Outcome = case_when(
+      str_starts(lhs, "wx") ~ "Hours",
+      str_starts(lhs, "wy") ~ "Angry",
+      TRUE ~ NA_character_
+    ),
+    Predictor = case_when(
+      str_starts(rhs, "wx") ~ "Hours",
+      str_starts(rhs, "wy") ~ "Angry",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  mutate(
+    `Parameter type` = case_when(
+      lhs == "RIx" & rhs == "RIy" ~ "Covariance",
+      Predictor == Outcome ~ "Autoregression",
+      Predictor != Outcome ~ "Cross-lagged",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  mutate(
+    Direction = case_when(
+      `Parameter type` == "Cross-lagged" ~ str_glue('{Predictor}[plain("[t-1]")]%->%{Outcome}[plain("[t]")]'),
+      TRUE ~ NA_character_
+    ),
+    Direction = as.factor(Direction)
+  ) %>% 
+  filter(!label == "") %>% 
+  mutate(
+    across(
+      c(est, ci.lower, ci.upper),
+      ~ round(.x, digits = 2)
+    )
+  ) %>%
+  select(
+    Predictor,
+    Outcome,
+    `Parameter type`,
+    Direction,
+    Type,
+    Game,
+    Estimate = est,
+    `Lower CI` = ci.lower,
+    `Upper CI` = ci.upper
+  ) %>%
+  distinct()
+
+params %>% 
+  select(-Direction) %>% 
+  kbl(caption = "Parameter from RICLPM") %>% 
+  kable_styling(full_width = FALSE, font_size = 12) 
+  
+```
+
+First draft of a results plot.
+```{r}
+text_estimates <- 
+  params %>% 
+  filter(Type == "Unstandardized", `Parameter type` == "Cross-lagged") %>% 
+  mutate(
+    label = str_glue("{Estimate} [{`Lower CI`}, {`Upper CI`}]"),
+    x = rep(0.25, 4),
+    y = c(rep(2.1, 2), rep(1.1, 2))
+  )
+
+params %>%
+  filter(Type == "Unstandardized", `Parameter type` == "Cross-lagged") %>% 
+  mutate(
+    Direction = fct_rev(Direction), # not in alphabetical order
+    Game = fct_rev(Game),
+    estimate_text = str_glue("{Estimate} [{`Lower CI`}, {`Upper CI`}]")
+  ) %>% 
+  ggplot(aes(Estimate, Game)) +
+  geom_vline(xintercept = 0, lty = 2, size = .25) +
+  geom_pointrange(
+    aes(xmin = `Lower CI`, xmax = `Upper CI`),
+    size = 0.8
+  ) +
+    scale_x_continuous(
+    breaks = pretty_breaks()
+  ) +
+  xlab("Estimated cross-lagged effect (95%CI)") +
+  xlim(-0.4, 0.4) +
+  facet_wrap(
+    ~ Direction,
+    labeller = labeller(.rows = label_parsed)
+  ) +
+  geom_text(
+    data = text_estimates,
+    mapping = aes(x = x, y = y, label = label)
+  ) +
+  theme(
+    aspect.ratio = 1,
+    axis.title.y = element_blank(),
+    panel.grid.major.y = element_line(color = "lightgrey"),
+    
+  )
+```
+
