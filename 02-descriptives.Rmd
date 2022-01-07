@@ -303,7 +303,7 @@ retention %>%
   scale_fill_manual(values = c("grey50", "black")) +
   ylab("# of participants") +
   theme(
-    legend.position = c(0.8,0.85)
+    legend.position = c(0.8,0.787)
   )
 ```
 
@@ -313,11 +313,12 @@ Shows distributions of central variables.
 
 ```{r}
 tmp <- d %>%
+  rename(`Aggressive affect` = Angry) %>% 
   select(
     Game, Wave, pid,
-    Angry, Hours
+    `Aggressive affect`, Hours
   ) %>%
-  pivot_longer(Angry:Hours) %>%
+  pivot_longer(`Aggressive affect`:Hours) %>%
   drop_na(value) %>%
   filter(!(name == "Hours" & value > 3)) %>%
   mutate(name = fct_inorder(name))
@@ -484,7 +485,7 @@ d %>%
     breaks = pretty_breaks(3)
   ) +
   scale_y_continuous(
-    "Feelings of anger at current wave",
+    "Aggressive affect at current wave",
     breaks = pretty_breaks()
   ) +
   geom_point(size = .2, alpha = .2, shape = 1, colour = "black") +
@@ -501,6 +502,6 @@ d %>%
     aspect.ratio = 1,
     panel.grid = element_blank(),
     strip.text.x = element_text(size = 10)
-  ) -> a
+  )
 ```
 

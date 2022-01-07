@@ -193,10 +193,22 @@ params <-
     `Lower CI` = ci.lower,
     `Upper CI` = ci.upper
   ) %>%
-  distinct()
+  distinct() %>% 
+  mutate(
+    across(
+      c(Predictor, Outcome, Direction),
+      ~ str_replace(.x, "Angry", "`Aggressive affect`") # for labelling figure
+    )
+  )
 
 params %>% 
   select(-Direction) %>% 
+  mutate( # temporarily remove backticks (purely cosmetic, for table below)
+    across(
+      c(Predictor, Outcome),
+      ~ str_replace(.x, "`Aggressive affect`", "Aggressive affect") # for labelling figure
+    )
+  ) %>% 
   kbl(caption = "Parameter from RICLPM") %>% 
   kable_styling(full_width = FALSE, font_size = 12) 
   
@@ -229,7 +241,7 @@ params %>%
     scale_x_continuous(
     breaks = pretty_breaks()
   ) +
-  xlab("Estimated cross-lagged effect (95%CI)") +
+  xlab("Estimated cross-lagged effect [95%CI]") +
   xlim(-0.4, 0.4) +
   facet_wrap(
     ~ Direction,
