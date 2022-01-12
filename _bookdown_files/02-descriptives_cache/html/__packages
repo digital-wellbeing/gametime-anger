@@ -20,3 +20,6 @@ lubridate
 ggdist
 extrafont
 janitor
+ggstance
+broom.mixed
+ggbeeswarm

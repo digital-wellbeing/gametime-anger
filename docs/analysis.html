@@ -4,17 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>4 Analysis | Game play and well-being | Online analysis supplement</title>
-<meta name="author" content="Matti Vuorre, Niklas Johannes, Kristoffer Magnusson, &amp; Andy Przybylski">
-<meta name="description" content="Online analysis supplement for “Time spent playing video games is unlikely to impact well-being (Vuorre, Johannes, Magnusson, &amp; Przybylski, 2021)”">
+<title>4 Analysis | Game play and aggressive affect | Online analysis supplement</title>
+<meta name="author" content="Niklas Johannes, Matti Vuorre, Kristoffer Magnusson, &amp; Andy Przybylski">
+<meta name="description" content="library(lavaan) library(tidyverse) library(here) library(ggplot2) library(scales) library(showtext) library(ggstance) library(extrafont) library(kableExtra) Set figure options like before. #...">
 <meta name="generator" content="bookdown 0.24 with bs4_book()">
-<meta property="og:title" content="4 Analysis | Game play and well-being | Online analysis supplement">
+<meta property="og:title" content="4 Analysis | Game play and aggressive affect | Online analysis supplement">
 <meta property="og:type" content="book">
-<meta property="og:url" content="https://digital-wellbeing.github.io/gametime-longitudinal/analysis.html">
-<meta property="og:description" content="Online analysis supplement for “Time spent playing video games is unlikely to impact well-being (Vuorre, Johannes, Magnusson, &amp; Przybylski, 2021)”">
+<meta property="og:url" content="https://digital-wellbeing.github.io/gametime-anger/analysis.html">
+<meta property="og:description" content="library(lavaan) library(tidyverse) library(here) library(ggplot2) library(scales) library(showtext) library(ggstance) library(extrafont) library(kableExtra) Set figure options like before. #...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4 Analysis | Game play and well-being | Online analysis supplement">
-<meta name="twitter:description" content="Online analysis supplement for “Time spent playing video games is unlikely to impact well-being (Vuorre, Johannes, Magnusson, &amp; Przybylski, 2021)”">
+<meta name="twitter:title" content="4 Analysis | Game play and aggressive affect | Online analysis supplement">
+<meta name="twitter:description" content="library(lavaan) library(tidyverse) library(here) library(ggplot2) library(scales) library(showtext) library(ggstance) library(extrafont) library(kableExtra) Set figure options like before. #...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/_Titillium%20Web-0.4.0/font.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">Game play and well-being | Online analysis supplement</a>
+        <a href="index.html" title="">Game play and aggressive affect | Online analysis supplement</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -59,14 +59,1139 @@
 <h1>
 <span class="header-section-number">4</span> Analysis<a class="anchor" aria-label="anchor" href="#analysis"><i class="fas fa-link"></i></a>
 </h1>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lavaan.ugent.be">lavaan</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yixuan/showtext">showtext</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lionel-/ggstance">ggstance</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/">kableExtra</a></span><span class="op">)</span></code></pre></div>
+<p>Set figure options like before.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plotting options</span>
+<span class="va">Font</span> <span class="op">&lt;-</span> <span class="st">"Titillium Web"</span>
+<span class="fu"><a href="https://rdrr.io/pkg/sysfonts/man/font_add_google.html">font_add_google</a></span><span class="op">(</span><span class="va">Font</span>, <span class="va">Font</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_linedraw</a></span><span class="op">(</span>
+    base_family <span class="op">=</span> <span class="va">Font</span>,
+    base_size <span class="op">=</span> <span class="fl">12</span>
+  <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+      panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+      panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>
+    <span class="op">)</span>
+<span class="op">)</span>
 
+<span class="va">col1</span> <span class="op">&lt;-</span> <span class="st">"#2980b9"</span>
+<span class="va">col2</span> <span class="op">&lt;-</span> <span class="st">"#2980b9"</span></code></pre></div>
+<p>Load the cleaned data set from the previous section.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"cleaned_data.rds"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="va">data_path</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">data_path</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{data_path} doesn't exist, run `01-process.Rmd` to create it."</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div id="run-model" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Run model<a class="anchor" aria-label="anchor" href="#run-model"><i class="fas fa-link"></i></a>
+</h2>
+<p>The syntax for lavaan.
+Note that we constrain the cross-lagged effects to be the same, but within each game (so the effects can be different for the games).
+See explanation here: <a href="https://lavaan.ugent.be/tutorial/groups.html" class="uri">https://lavaan.ugent.be/tutorial/groups.html</a></p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">riclpm_constrained</span> <span class="op">&lt;-</span> <span class="st">[1058 chars quoted with '"']</span></code></pre></div>
+<p>Transform the data to wide format for lavaan to take the arguments above.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d_riclpm</span> <span class="op">&lt;-</span> <span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">Game</span>, <span class="va">pid</span>, <span class="va">wid</span>,
+    <span class="va">Hours</span>, <span class="va">Angry</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="co"># Long format on anger (outcome)</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+    <span class="va">Angry</span>,
+    names_to <span class="op">=</span> <span class="st">"y_var"</span>, values_to <span class="op">=</span> <span class="st">"y"</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="co"># Long format on hours (predictor)</span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>
+    <span class="va">Hours</span>,
+    names_to <span class="op">=</span> <span class="st">"x_var"</span>, values_to <span class="op">=</span> <span class="st">"x"</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>
+    names_from <span class="op">=</span> <span class="va">wid</span>,
+    values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span><span class="op">)</span>,
+    names_sep <span class="op">=</span> <span class="st">""</span>
+  <span class="op">)</span></code></pre></div>
+<p>Fitting the model.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lavaan_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/lavaan.html">lavaan</a></span><span class="op">(</span>
+  <span class="va">riclpm_constrained</span>,
+  data <span class="op">=</span> <span class="va">d_riclpm</span>,
+  missing <span class="op">=</span> <span class="st">"ml"</span>,
+  meanstructure <span class="op">=</span> <span class="cn">TRUE</span>,
+  int.ov.free <span class="op">=</span> <span class="cn">TRUE</span>,
+  group <span class="op">=</span> <span class="st">"Game"</span>
+<span class="op">)</span></code></pre></div>
+<p>Inspecting summary.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lavaan_fit</span><span class="op">)</span></code></pre></div>
+<pre><code>## lavaan 0.6-9 ended normally after 98 iterations
+## 
+##   Estimator                                         ML
+##   Optimization method                           NLMINB
+##   Number of model parameters                        52
+##   Number of equality constraints                     8
+##                                                       
+##   Number of observations per group:                   
+##     Apex Legends                                  1293
+##     Outriders                                     1607
+##   Number of missing patterns per group:               
+##     Apex Legends                                     9
+##     Outriders                                        8
+##                                                       
+## Model Test User Model:
+##                                                       
+##   Test statistic                                51.509
+##   Degrees of freedom                                10
+##   P-value (Chi-square)                           0.000
+##   Test statistic for each group:
+##     Apex Legends                                 2.362
+##     Outriders                                   49.147
+## 
+## Parameter Estimates:
+## 
+##   Standard errors                             Standard
+##   Information                                 Observed
+##   Observed information based on                Hessian
+## 
+## 
+## Group 1 [Apex Legends]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   RIx =~                                              
+##     x1                1.000                           
+##     x2                1.000                           
+##     x3                1.000                           
+##   RIy =~                                              
+##     y1                1.000                           
+##     y2                1.000                           
+##     y3                1.000                           
+##   wx1 =~                                              
+##     x1                1.000                           
+##   wx2 =~                                              
+##     x2                1.000                           
+##   wx3 =~                                              
+##     x3                1.000                           
+##   wy1 =~                                              
+##     y1                1.000                           
+##   wy2 =~                                              
+##     y2                1.000                           
+##   wy3 =~                                              
+##     y3                1.000                           
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   wx2 ~                                               
+##     wx1      (bxa)    0.433    0.053    8.115    0.000
+##     wy1      (gxa)    0.026    0.024    1.101    0.271
+##   wy2 ~                                               
+##     wx1      (gya)   -0.004    0.166   -0.025    0.980
+##     wy1      (bya)    0.040    0.128    0.316    0.752
+##   wx3 ~                                               
+##     wx2      (bxa)    0.433    0.053    8.115    0.000
+##     wy2      (gxa)    0.026    0.024    1.101    0.271
+##   wy3 ~                                               
+##     wx2      (gya)   -0.004    0.166   -0.025    0.980
+##     wy2      (bya)    0.040    0.128    0.316    0.752
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   wx1 ~~                                              
+##     wy1               0.052    0.044    1.184    0.236
+##  .wx2 ~~                                              
+##    .wy2               0.018    0.044    0.405    0.685
+##  .wx3 ~~                                              
+##    .wy3               0.047    0.039    1.213    0.225
+##   RIx ~~                                              
+##     RIy               0.010    0.046    0.208    0.835
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .x1                0.750    0.023   32.708    0.000
+##    .x2                0.644    0.023   28.137    0.000
+##    .x3                0.647    0.022   28.972    0.000
+##    .y1                3.420    0.048   71.667    0.000
+##    .y2                3.235    0.070   46.506    0.000
+##    .y3                3.233    0.093   34.945    0.000
+##     RIx               0.000                           
+##     RIy               0.000                           
+##     wx1               0.000                           
+##    .wx2               0.000                           
+##    .wx3               0.000                           
+##     wy1               0.000                           
+##    .wy2               0.000                           
+##    .wy3               0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     RIx               0.369    0.032   11.484    0.000
+##     RIy               1.299    0.155    8.372    0.000
+##     wx1               0.312    0.028   11.174    0.000
+##     wy1               1.125    0.150    7.501    0.000
+##    .wx2               0.248    0.017   14.989    0.000
+##    .wy2               1.029    0.186    5.529    0.000
+##    .wx3               0.216    0.012   17.635    0.000
+##    .wy3               1.107    0.151    7.318    0.000
+##    .x1                0.000                           
+##    .x2                0.000                           
+##    .x3                0.000                           
+##    .y1                0.000                           
+##    .y2                0.000                           
+##    .y3                0.000                           
+## 
+## 
+## Group 2 [Outriders]:
+## 
+## Latent Variables:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   RIx =~                                              
+##     x1                1.000                           
+##     x2                1.000                           
+##     x3                1.000                           
+##   RIy =~                                              
+##     y1                1.000                           
+##     y2                1.000                           
+##     y3                1.000                           
+##   wx1 =~                                              
+##     x1                1.000                           
+##   wx2 =~                                              
+##     x2                1.000                           
+##   wx3 =~                                              
+##     x3                1.000                           
+##   wy1 =~                                              
+##     y1                1.000                           
+##   wy2 =~                                              
+##     y2                1.000                           
+##   wy3 =~                                              
+##     y3                1.000                           
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   wx2 ~                                               
+##     wx1      (bxo)    0.558    0.040   13.943    0.000
+##     wy1      (gxo)    0.016    0.026    0.588    0.556
+##   wy2 ~                                               
+##     wx1      (gyo)   -0.025    0.058   -0.431    0.667
+##     wy1      (byo)    0.025    0.115    0.217    0.828
+##   wx3 ~                                               
+##     wx2      (bxo)    0.558    0.040   13.943    0.000
+##     wy2      (gxo)    0.016    0.026    0.588    0.556
+##   wy3 ~                                               
+##     wx2      (gyo)   -0.025    0.058   -0.431    0.667
+##     wy2      (byo)    0.025    0.115    0.217    0.828
+## 
+## Covariances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##   wx1 ~~                                              
+##     wy1               0.077    0.075    1.035    0.301
+##  .wx2 ~~                                              
+##    .wy2              -0.032    0.039   -0.833    0.405
+##  .wx3 ~~                                              
+##    .wy3               0.029    0.028    1.035    0.301
+##   RIx ~~                                              
+##     RIy              -0.041    0.049   -0.830    0.407
+## 
+## Intercepts:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##    .x1                0.653    0.028   22.981    0.000
+##    .x2                0.367    0.022   16.939    0.000
+##    .x3                0.207    0.016   12.873    0.000
+##    .y1                2.831    0.037   76.821    0.000
+##    .y2                2.839    0.059   47.892    0.000
+##    .y3                2.782    0.065   42.952    0.000
+##     RIx               0.000                           
+##     RIy               0.000                           
+##     wx1               0.000                           
+##    .wx2               0.000                           
+##    .wx3               0.000                           
+##     wy1               0.000                           
+##    .wy2               0.000                           
+##    .wy3               0.000                           
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)
+##     RIx              -0.180    0.103   -1.750    0.080
+##     RIy               0.918    0.102    8.975    0.000
+##     wx1               1.479    0.132   11.213    0.000
+##     wy1               1.097    0.099   11.092    0.000
+##    .wx2               0.474    0.020   24.056    0.000
+##    .wy2               0.750    0.167    4.494    0.000
+##    .wx3               0.306    0.024   12.659    0.000
+##    .wy3               0.937    0.100    9.371    0.000
+##    .x1                0.000                           
+##    .x2                0.000                           
+##    .x3                0.000                           
+##    .y1                0.000                           
+##    .y2                0.000                           
+##    .y3                0.000</code></pre>
+<p>Get parameter estimates for plot.
+Note: The standardized estimates aren’t the same across waves because we didn’t put equality constraints on the variances – only the unstandardized ones are identical.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">params</span> <span class="op">&lt;-</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/parameterEstimates.html">parameterestimates</a></span><span class="op">(</span><span class="va">lavaan_fit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type <span class="op">=</span> <span class="st">"Unstandardized"</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/standardizedSolution.html">standardizedsolution</a></span><span class="op">(</span><span class="va">lavaan_fit</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>est <span class="op">=</span> <span class="va">est.std</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Type <span class="op">=</span> <span class="st">"Standardized"</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Game <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    Game <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">Game</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">"Apex Legends"</span>, <span class="st">"Outriders"</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    label <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">lhs</span> <span class="op">==</span> <span class="st">"RIx"</span> <span class="op">&amp;</span> <span class="va">rhs</span> <span class="op">==</span> <span class="st">"RIy"</span>, <span class="st">"Covariance"</span>, <span class="va">label</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    Outcome <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_starts.html">str_starts</a></span><span class="op">(</span><span class="va">lhs</span>, <span class="st">"wx"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Hours"</span>,
+      <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_starts.html">str_starts</a></span><span class="op">(</span><span class="va">lhs</span>, <span class="st">"wy"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Angry"</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="cn">NA_character_</span>
+    <span class="op">)</span>,
+    Predictor <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_starts.html">str_starts</a></span><span class="op">(</span><span class="va">rhs</span>, <span class="st">"wx"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Hours"</span>,
+      <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_starts.html">str_starts</a></span><span class="op">(</span><span class="va">rhs</span>, <span class="st">"wy"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Angry"</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="cn">NA_character_</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    `Parameter type` <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+      <span class="va">lhs</span> <span class="op">==</span> <span class="st">"RIx"</span> <span class="op">&amp;</span> <span class="va">rhs</span> <span class="op">==</span> <span class="st">"RIy"</span> <span class="op">~</span> <span class="st">"Covariance"</span>,
+      <span class="va">Predictor</span> <span class="op">==</span> <span class="va">Outcome</span> <span class="op">~</span> <span class="st">"Autoregression"</span>,
+      <span class="va">Predictor</span> <span class="op">!=</span> <span class="va">Outcome</span> <span class="op">~</span> <span class="st">"Cross-lagged"</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="cn">NA_character_</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    Direction <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span>
+      <span class="va">`Parameter type`</span> <span class="op">==</span> <span class="st">"Cross-lagged"</span> <span class="op">~</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">'{Predictor}[plain("[t-1]")]%-&gt;%{Outcome}[plain("[t]")]'</span><span class="op">)</span>,
+      <span class="cn">TRUE</span> <span class="op">~</span> <span class="cn">NA_character_</span>
+    <span class="op">)</span>,
+    Direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Direction</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">label</span> <span class="op">==</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">est</span>, <span class="va">ci.lower</span>, <span class="va">ci.upper</span><span class="op">)</span>,
+      <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">.x</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">Predictor</span>,
+    <span class="va">Outcome</span>,
+    <span class="va">`Parameter type`</span>,
+    <span class="va">Direction</span>,
+    <span class="va">Type</span>,
+    <span class="va">Game</span>,
+    Estimate <span class="op">=</span> <span class="va">est</span>,
+    `Lower CI` <span class="op">=</span> <span class="va">ci.lower</span>,
+    `Upper CI` <span class="op">=</span> <span class="va">ci.upper</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Predictor</span>, <span class="va">Outcome</span>, <span class="va">Direction</span><span class="op">)</span>,
+      <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">.x</span>, <span class="st">"Angry"</span>, <span class="st">"`Aggressive affect`"</span><span class="op">)</span><span class="op">)</span> <span class="co"># for labelling figure</span>
+    <span class="op">)</span>
+  <span class="op">)</span>
+
+<span class="va">params</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Direction</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> <span class="co"># temporarily remove backticks (purely cosmetic, for table below)</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Predictor</span>, <span class="va">Outcome</span><span class="op">)</span>,
+      <span class="op">~</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="va">.x</span>, <span class="st">"`Aggressive affect`"</span>, <span class="st">"Aggressive affect"</span><span class="op">)</span> <span class="co"># for labelling figure</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Parameter from RICLPM"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html">kable_styling</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, font_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span> </code></pre></div>
+<div class="inline-table"><table class="table" style="font-size: 12px; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+<span id="tab:unnamed-chunk-8">Table 3.2: </span>Parameter from RICLPM
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+Predictor
+</th>
+<th style="text-align:left;">
+Outcome
+</th>
+<th style="text-align:left;">
+Parameter type
+</th>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Game
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Lower CI
+</th>
+<th style="text-align:right;">
+Upper CI
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0.54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.33
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Covariance
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.20
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Covariance
+</td>
+<td style="text-align:left;">
+Unstandardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-0.22
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Covariance
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Apex Legends
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.12
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+0.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+-0.20
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.24
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hours
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Cross-lagged
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Aggressive affect
+</td>
+<td style="text-align:left;">
+Autoregression
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Covariance
+</td>
+<td style="text-align:left;">
+Standardized
+</td>
+<td style="text-align:left;">
+Outriders
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+-0.34
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="figure-4" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Figure 4<a class="anchor" aria-label="anchor" href="#figure-4"><i class="fas fa-link"></i></a>
+</h2>
+<p>Then a forest plot of the unstandardized cross-lagged effects.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">text_estimates</span> <span class="op">&lt;-</span> 
+  <span class="va">params</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">==</span> <span class="st">"Unstandardized"</span>, <span class="va">`Parameter type`</span> <span class="op">==</span> <span class="st">"Cross-lagged"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    label <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{Estimate} [{`Lower CI`}, {`Upper CI`}]"</span><span class="op">)</span>,
+    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">4</span><span class="op">)</span>,
+    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2.1</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>
+
+<span class="va">params</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Type</span> <span class="op">==</span> <span class="st">"Unstandardized"</span>, <span class="va">`Parameter type`</span> <span class="op">==</span> <span class="st">"Cross-lagged"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+    Direction <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">Direction</span><span class="op">)</span>, <span class="co"># not in alphabetical order</span>
+    Game <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html">fct_rev</a></span><span class="op">(</span><span class="va">Game</span><span class="op">)</span>,
+    estimate_text <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_glue.html">str_glue</a></span><span class="op">(</span><span class="st">"{Estimate} [{`Lower CI`}, {`Upper CI`}]"</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">Estimate</span>, <span class="va">Game</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, lty <span class="op">=</span> <span class="fl">2</span>, size <span class="op">=</span> <span class="fl">.25</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_pointrange</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">`Lower CI`</span>, xmax <span class="op">=</span> <span class="va">`Upper CI`</span><span class="op">)</span>,
+    size <span class="op">=</span> <span class="fl">0.8</span>
+  <span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>
+    breaks <span class="op">=</span> <span class="fu"><a href="https://scales.r-lib.org/reference/breaks_pretty.html">pretty_breaks</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Estimated cross-lagged effect [95%CI]"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span>
+    <span class="op">~</span> <span class="va">Direction</span>,
+    labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labeller.html">labeller</a></span><span class="op">(</span>.rows <span class="op">=</span> <span class="va">label_parsed</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>
+    data <span class="op">=</span> <span class="va">text_estimates</span>,
+    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, label <span class="op">=</span> <span class="va">label</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+    aspect.ratio <span class="op">=</span> <span class="fl">1</span>,
+    axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    panel.grid.major.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"lightgrey"</span><span class="op">)</span>,
+    
+  <span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="03-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;"></div>
+
+</div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="descriptives.html"><span class="header-section-number">3</span> Descriptives</a></div>
 <div class="empty"></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#analysis"><span class="header-section-number">4</span> Analysis</a></li></ul>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#analysis"><span class="header-section-number">4</span> Analysis</a></li>
+<li><a class="nav-link" href="#run-model"><span class="header-section-number">4.1</span> Run model</a></li>
+<li><a class="nav-link" href="#figure-4"><span class="header-section-number">4.2</span> Figure 4</a></li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
@@ -83,7 +1208,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Game play and well-being | Online analysis supplement</strong>" was written by Matti Vuorre, Niklas Johannes, Kristoffer Magnusson, &amp; Andy Przybylski. It was last built on 2021-11-18.</p>
+    <p>"<strong>Game play and aggressive affect | Online analysis supplement</strong>" was written by Niklas Johannes, Matti Vuorre, Kristoffer Magnusson, &amp; Andy Przybylski. It was last built on 2022-01-12.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

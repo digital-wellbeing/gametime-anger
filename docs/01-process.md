@@ -937,6 +937,13 @@ d <-
   )
 ```
 
+Turn wave into a nicely labelled factor.
+
+```r
+# Make wave a nicely labelled factor
+d <- d %>%
+  mutate(Wave = factor(wid, levels = 1:3, labels = paste0("Wave ", 1:3)))
+```
 
 ## Save cleaned data
 

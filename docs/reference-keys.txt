@@ -25,6 +25,9 @@ response-times
 intervals-between-waves
 descriptives-telemetry
 plots-for-paper
+figure-0
 figure-1
-figure-3
+figure-2
 analysis
+run-model
+figure-4

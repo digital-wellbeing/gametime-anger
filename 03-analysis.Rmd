@@ -30,11 +30,6 @@ theme_set(
 
 col1 <- "#2980b9"
 col2 <- "#2980b9"
-
-# resolution for figure output
-knitr::opts_chunk$set(
-  fig.retina = 2
-)
 ```
 
 Load the cleaned data set from the previous section.

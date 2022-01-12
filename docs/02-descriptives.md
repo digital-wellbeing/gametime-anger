@@ -13,8 +13,11 @@ library(showtext)
 library(tidyverse)
 library(lubridate)
 library(ggdist)
+library(ggstance)
 library(extrafont)
 library(janitor)
+library(broom.mixed)
+library(ggbeeswarm)
 ```
 
 
@@ -34,6 +37,7 @@ theme_set(
       panel.grid.major.x = element_blank()
     )
 )
+
 col1 <- "#2980b9"
 col2 <- "#2980b9"
 ```
@@ -45,12 +49,8 @@ data_path <- here("data", "cleaned_data.rds")
 if (file.exists(data_path)) {
   d <- read_rds(file = data_path)
 } else {
-  stop(str_glue("{data_path} doesn't exist, run `01-clean.Rmd` to create it."))
+  stop(str_glue("{data_path} doesn't exist, run `01-process.Rmd` to create it."))
 }
-
-# Make wave a nicely labelled factor
-d <- d %>%
-  mutate(Wave = factor(wid, levels = 1:3, labels = paste0("Wave ", 1:3)))
 ```
 
 ## Demographics final sample
@@ -428,9 +428,10 @@ d %>%
 
 The plots will be similar (if not identical) to Vuorre et al. (2021).
 
-### Figure 1
+### Figure 0
 
 The first figure will simply show the number of participants per wave (aka retention).
+This one isn't in the manuscript anymore (hence the Figure 0).
 
 ```r
 retention %>%
@@ -447,28 +448,32 @@ retention %>%
   geom_text(
     aes(
       label = `%`,
-      y = n + max(retention[retention$wid != 0,]$n) * .05
+      y = n + max(retention[retention$wid != 0,]$n) * .03
     ),
     position = position_dodge(0.8)
   ) +
-  scale_fill_manual(values = c("grey40", "black")) +
-  ylab("# of participants")
+  scale_fill_manual(values = c("grey50", "black")) +
+  ylab("# of participants") +
+  theme(
+    legend.position = c(0.8,0.787)
+  )
 ```
 
 <img src="02-descriptives_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
 
-### Figure 3
+### Figure 1
 
 Shows distributions of central variables.
-
+Actually, we'll not use this one, instead opting for the beeswarm plot next.
 
 ```r
 tmp <- d %>%
+  rename(`Aggressive affect` = Angry) %>% 
   select(
     Game, Wave, pid,
-    Angry, Hours
+    `Aggressive affect`, Hours
   ) %>%
-  pivot_longer(Angry:Hours) %>%
+  pivot_longer(`Aggressive affect`:Hours) %>%
   drop_na(value) %>%
   filter(!(name == "Hours" & value > 3)) %>%
   mutate(name = fct_inorder(name))
@@ -575,3 +580,125 @@ d %>%
   </tr>
 </tbody>
 </table>
+
+Try out an alternative with `ggbeeswarm` where we can still see individual data points.
+That'll be in the paper.
+
+```r
+tmp_summary <- 
+  tmp %>% 
+  group_by(name, Game, Wave) %>% 
+  summarise(
+    mean = mean(value, na.rm = TRUE),
+    se = sqrt(var(value)/length(value)),
+    n = n(),
+    lower_ci = mean - 1.96*se,
+    upper_ci = mean + 1.96*se
+  )
+
+tmp %>% 
+  ggplot(
+    aes(Wave, value)
+  ) +
+  scale_x_discrete(labels = 1:3) +
+  geom_quasirandom(color = "grey52") +
+  geom_point(
+    data = tmp_summary,
+    aes(y = mean),
+    size = 2
+  ) + 
+  geom_errorbar(
+    data = tmp_summary,
+    aes(
+      y = mean,
+      ymin = lower_ci,
+      ymax = upper_ci
+    ),
+    width = 0
+  ) +
+  geom_line(
+    data = tmp_summary, 
+    aes(y = mean, group = 1),
+    size = 0.7
+  ) +
+  ylab("Value") +
+  facet_grid(
+    name ~ Game,
+    scales = "free_y"
+  )
+```
+
+<img src="02-descriptives_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" />
+
+### Figure 2
+
+We'll show the simple bivariate correlations between hours played and feelings of anger at each wave for each game.
+
+```r
+d %>%
+  group_by(Game, Wave) %>%
+  summarise(
+    tidy(
+      lm(
+        Angry ~ Hours, 
+        data = cur_data()
+      ), 
+      conf.int = TRUE
+    ),
+  ) %>%
+  filter(term != "(Intercept)") %>%
+  ggplot(aes(estimate, Game, col = Wave)) +
+  geom_vline(xintercept = 0, lty = 2, size = .25) +
+  scale_x_continuous(
+    "Bivariate regression coefficient (95%CI)",
+    breaks = pretty_breaks()
+  ) +
+  geom_pointrange(
+    aes(xmin = conf.low, xmax = conf.high),
+    size = 0.8,
+    position = position_dodge2v(.25)
+  ) +
+  xlim(-0.4, 0.4) +
+  theme(
+    legend.position = "bottom",
+    axis.title.y = element_blank()
+  )
+```
+
+<img src="02-descriptives_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
+
+For the purposes of the paper, the cross-lagged scatter associations are probably more informative, so we'll use the figure below.
+
+```r
+d %>%
+  mutate(Hours = if_else(Hours > 3, NaN, Hours)) %>%
+  mutate(Hours = lag(Hours)) %>% 
+  filter(Wave != "Wave 1") %>% 
+  ggplot(aes(Hours, Angry)) +
+  scale_x_continuous(
+    "Hours played per day at previous wave",
+    breaks = pretty_breaks(3)
+  ) +
+  scale_y_continuous(
+    "Aggressive affect at current wave",
+    breaks = pretty_breaks()
+  ) +
+  geom_point(size = .2, alpha = .2, shape = 1, colour = "black") +
+  geom_smooth(
+    method = "gam", size = .4,
+    color = "black",
+    alpha = .33, show.legend = FALSE
+  ) +
+  facet_grid(
+    Wave ~ Game,
+    scales = "free_y"
+  ) +
+  theme(
+    aspect.ratio = 1,
+    panel.grid = element_blank(),
+    strip.text.x = element_text(size = 10)
+  )
+```
+
+<img src="02-descriptives_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
+
