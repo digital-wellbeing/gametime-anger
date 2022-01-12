@@ -44,6 +44,11 @@ theme_set(
     )
 )
 
+# output resolution
+knitr::opts_chunk$set(
+  fig.retina = 2
+)
+
 # parallel computations
 MAX_CORES <- as.numeric(Sys.getenv("MAX_CORES"))
 if (is.na(MAX_CORES)) MAX_CORES <- parallel::detectCores(logical = FALSE)

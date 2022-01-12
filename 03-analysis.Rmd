@@ -1,6 +1,6 @@
 # Analysis
 
-```{r}
+```{r, message=FALSE}
 library(lavaan)
 library(tidyverse)
 library(here)
@@ -27,8 +27,14 @@ theme_set(
       panel.grid.major.x = element_blank()
     )
 )
+
 col1 <- "#2980b9"
 col2 <- "#2980b9"
+
+# resolution for figure output
+knitr::opts_chunk$set(
+  fig.retina = 2
+)
 ```
 
 Load the cleaned data set from the previous section.
@@ -40,6 +46,8 @@ if (file.exists(data_path)) {
   stop(str_glue("{data_path} doesn't exist, run `01-process.Rmd` to create it."))
 }
 ```
+
+## Run model
 
 The syntax for lavaan.
 Note that we constrain the cross-lagged effects to be the same, but within each game (so the effects can be different for the games).
@@ -197,7 +205,7 @@ params <-
   mutate(
     across(
       c(Predictor, Outcome, Direction),
-      ~ str_replace(.x, "Angry", "`Aggressive affect`") # for labelling figure
+      ~ as.factor(str_replace(.x, "Angry", "`Aggressive affect`")) # for labelling figure
     )
   )
 
@@ -213,9 +221,10 @@ params %>%
   kable_styling(full_width = FALSE, font_size = 12) 
   
 ```
+## Figure 4
 
-First draft of a results plot.
-```{r}
+Then a forest plot of the unstandardized cross-lagged effects.
+```{r, message=FALSE}
 text_estimates <- 
   params %>% 
   filter(Type == "Unstandardized", `Parameter type` == "Cross-lagged") %>% 
