@@ -29,4 +29,4 @@ Note: This project uses data and code from our previous study: [Vuorre et al. (2
 
 ## Reproducibility
 
-The raw data are in the `data/` directory of this repository. The code that we used to clean and analyze the data are organized in R Markdown (`.Rmd`) files in this directory, which are meant to be run in the sequence indicated by their numeric prefixes. To run all the cleaning and analyses, and compile the resulting document ([the online analysis supplement](https://digital-wellbeing.github.io/gametime-longitudinal)), run `bookdown::render_book()` in R or click "Build Book" in the RStudio IDE.
+The raw data are in the `data/` directory of this repository. The code that we used to clean and analyze the data are organized in R Markdown (`.Rmd`) files in this directory, which are meant to be run in the sequence indicated by their numeric prefixes. To run all the cleaning and analyses, and compile the resulting document ([the online analysis supplement](https://digital-wellbeing.github.io/gametime-anger)), run `bookdown::render_book()` in R or click "Build Book" in the RStudio IDE.
