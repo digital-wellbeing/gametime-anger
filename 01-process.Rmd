@@ -333,7 +333,7 @@ From the original processing: These files are minimally processed versions of on
 
 ```{r}
 # Apex Legends
-t_al <- read_csv(here("data", "telemetry-apex-legends.csv.gz"))
+t_al <- read_csv(here("data", "telemetry_apex_legends.csv.gz"))
 
 # Select relevant variables
 t_al <- t_al %>%
@@ -349,7 +349,7 @@ t_al <- t_al %>%
   )
 
 # Outriders
-t_or <- read_csv(here("Data", "telemetry-outriders.csv.gz"))
+t_or <- read_csv(here("Data", "telemetry_outriders.csv.gz"))
 
 # Select relevant variables
 t_or <- t_or %>%

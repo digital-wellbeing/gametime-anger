@@ -140,7 +140,7 @@ summary(lavaan_fit)
 ```
 
 ```
-## lavaan 0.6-9 ended normally after 98 iterations
+## lavaan 0.6-9 ended normally after 95 iterations
 ## 
 ##   Estimator                                         ML
 ##   Optimization method                           NLMINB
@@ -148,20 +148,20 @@ summary(lavaan_fit)
 ##   Number of equality constraints                     8
 ##                                                       
 ##   Number of observations per group:                   
-##     Apex Legends                                  1293
-##     Outriders                                     1607
+##     Apex Legends                                  1092
+##     Outriders                                     1488
 ##   Number of missing patterns per group:               
-##     Apex Legends                                     9
-##     Outriders                                        8
+##     Apex Legends                                     8
+##     Outriders                                        7
 ##                                                       
 ## Model Test User Model:
 ##                                                       
-##   Test statistic                                51.509
+##   Test statistic                                55.775
 ##   Degrees of freedom                                10
 ##   P-value (Chi-square)                           0.000
 ##   Test statistic for each group:
-##     Apex Legends                                 2.362
-##     Outriders                                   49.147
+##     Apex Legends                                 3.680
+##     Outriders                                   52.095
 ## 
 ## Parameter Estimates:
 ## 
@@ -198,37 +198,37 @@ summary(lavaan_fit)
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
 ##   wx2 ~                                               
-##     wx1      (bxa)    0.433    0.053    8.115    0.000
-##     wy1      (gxa)    0.026    0.024    1.101    0.271
+##     wx1      (bxa)    0.457    0.053    8.677    0.000
+##     wy1      (gxa)    0.027    0.025    1.113    0.266
 ##   wy2 ~                                               
-##     wx1      (gya)   -0.004    0.166   -0.025    0.980
-##     wy1      (bya)    0.040    0.128    0.316    0.752
+##     wx1      (gya)   -0.008    0.168   -0.048    0.961
+##     wy1      (bya)    0.040    0.128    0.310    0.756
 ##   wx3 ~                                               
-##     wx2      (bxa)    0.433    0.053    8.115    0.000
-##     wy2      (gxa)    0.026    0.024    1.101    0.271
+##     wx2      (bxa)    0.457    0.053    8.677    0.000
+##     wy2      (gxa)    0.027    0.025    1.113    0.266
 ##   wy3 ~                                               
-##     wx2      (gya)   -0.004    0.166   -0.025    0.980
-##     wy2      (bya)    0.040    0.128    0.316    0.752
+##     wx2      (gya)   -0.008    0.168   -0.048    0.961
+##     wy2      (bya)    0.040    0.128    0.310    0.756
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
 ##   wx1 ~~                                              
-##     wy1               0.052    0.044    1.184    0.236
+##     wy1               0.052    0.045    1.158    0.247
 ##  .wx2 ~~                                              
-##    .wy2               0.018    0.044    0.405    0.685
+##    .wy2               0.018    0.046    0.396    0.692
 ##  .wx3 ~~                                              
-##    .wy3               0.047    0.039    1.213    0.225
+##    .wy3               0.048    0.040    1.209    0.227
 ##   RIx ~~                                              
-##     RIy               0.010    0.046    0.208    0.835
+##     RIy               0.011    0.048    0.232    0.816
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
-##    .x1                0.750    0.023   32.708    0.000
-##    .x2                0.644    0.023   28.137    0.000
-##    .x3                0.647    0.022   28.972    0.000
-##    .y1                3.420    0.048   71.667    0.000
-##    .y2                3.235    0.070   46.506    0.000
-##    .y3                3.233    0.093   34.945    0.000
+##    .x1                0.765    0.025   30.549    0.000
+##    .x2                0.671    0.026   26.141    0.000
+##    .x3                0.670    0.025   26.777    0.000
+##    .y1                3.422    0.048   71.715    0.000
+##    .y2                3.237    0.069   46.638    0.000
+##    .y3                3.235    0.092   35.062    0.000
 ##     RIx               0.000                           
 ##     RIy               0.000                           
 ##     wx1               0.000                           
@@ -240,13 +240,13 @@ summary(lavaan_fit)
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
-##     RIx               0.369    0.032   11.484    0.000
-##     RIy               1.299    0.155    8.372    0.000
-##     wx1               0.312    0.028   11.174    0.000
-##     wy1               1.125    0.150    7.501    0.000
-##    .wx2               0.248    0.017   14.989    0.000
-##    .wy2               1.029    0.186    5.529    0.000
-##    .wx3               0.216    0.012   17.635    0.000
+##     RIx               0.386    0.035   11.145    0.000
+##     RIy               1.300    0.155    8.388    0.000
+##     wx1               0.298    0.030   10.030    0.000
+##     wy1               1.124    0.150    7.509    0.000
+##    .wx2               0.269    0.017   15.519    0.000
+##    .wy2               1.028    0.186    5.522    0.000
+##    .wx3               0.226    0.013   16.995    0.000
 ##    .wy3               1.107    0.151    7.318    0.000
 ##    .x1                0.000                           
 ##    .x2                0.000                           
@@ -284,37 +284,37 @@ summary(lavaan_fit)
 ## Regressions:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
 ##   wx2 ~                                               
-##     wx1      (bxo)    0.558    0.040   13.943    0.000
-##     wy1      (gxo)    0.016    0.026    0.588    0.556
+##     wx1      (bxo)    0.553    0.042   13.091    0.000
+##     wy1      (gxo)    0.016    0.027    0.609    0.543
 ##   wy2 ~                                               
-##     wx1      (gyo)   -0.025    0.058   -0.431    0.667
-##     wy1      (byo)    0.025    0.115    0.217    0.828
+##     wx1      (gyo)   -0.024    0.059   -0.414    0.679
+##     wy1      (byo)    0.025    0.115    0.220    0.826
 ##   wx3 ~                                               
-##     wx2      (bxo)    0.558    0.040   13.943    0.000
-##     wy2      (gxo)    0.016    0.026    0.588    0.556
+##     wx2      (bxo)    0.553    0.042   13.091    0.000
+##     wy2      (gxo)    0.016    0.027    0.609    0.543
 ##   wy3 ~                                               
-##     wx2      (gyo)   -0.025    0.058   -0.431    0.667
-##     wy2      (byo)    0.025    0.115    0.217    0.828
+##     wx2      (gyo)   -0.024    0.059   -0.414    0.679
+##     wy2      (byo)    0.025    0.115    0.220    0.826
 ## 
 ## Covariances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
 ##   wx1 ~~                                              
-##     wy1               0.077    0.075    1.035    0.301
+##     wy1               0.078    0.075    1.043    0.297
 ##  .wx2 ~~                                              
-##    .wy2              -0.032    0.039   -0.833    0.405
+##    .wy2              -0.034    0.040   -0.840    0.401
 ##  .wx3 ~~                                              
-##    .wy3               0.029    0.028    1.035    0.301
+##    .wy3               0.029    0.028    1.038    0.299
 ##   RIx ~~                                              
-##     RIy              -0.041    0.049   -0.830    0.407
+##     RIy              -0.042    0.050   -0.838    0.402
 ## 
 ## Intercepts:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
-##    .x1                0.653    0.028   22.981    0.000
-##    .x2                0.367    0.022   16.939    0.000
-##    .x3                0.207    0.016   12.873    0.000
-##    .y1                2.831    0.037   76.821    0.000
-##    .y2                2.839    0.059   47.892    0.000
-##    .y3                2.782    0.065   42.952    0.000
+##    .x1                0.666    0.030   22.512    0.000
+##    .x2                0.373    0.023   16.503    0.000
+##    .x3                0.207    0.017   12.372    0.000
+##    .y1                2.831    0.037   76.839    0.000
+##    .y2                2.838    0.059   47.900    0.000
+##    .y3                2.782    0.065   42.942    0.000
 ##     RIx               0.000                           
 ##     RIy               0.000                           
 ##     wx1               0.000                           
@@ -326,14 +326,14 @@ summary(lavaan_fit)
 ## 
 ## Variances:
 ##                    Estimate  Std.Err  z-value  P(>|z|)
-##     RIx              -0.180    0.103   -1.750    0.080
-##     RIy               0.918    0.102    8.975    0.000
-##     wx1               1.479    0.132   11.213    0.000
-##     wy1               1.097    0.099   11.092    0.000
-##    .wx2               0.474    0.020   24.056    0.000
-##    .wy2               0.750    0.167    4.494    0.000
-##    .wx3               0.306    0.024   12.659    0.000
-##    .wy3               0.937    0.100    9.371    0.000
+##     RIx              -0.179    0.108   -1.659    0.097
+##     RIy               0.918    0.102    8.963    0.000
+##     wx1               1.483    0.140   10.570    0.000
+##     wy1               1.097    0.099   11.081    0.000
+##    .wx2               0.485    0.021   23.505    0.000
+##    .wy2               0.750    0.167    4.491    0.000
+##    .wx3               0.310    0.026   11.985    0.000
+##    .wy3               0.937    0.100    9.368    0.000
 ##    .x1                0.000                           
 ##    .x2                0.000                           
 ##    .x3                0.000                           
@@ -448,9 +448,9 @@ params %>%
    <td style="text-align:left;"> Autoregression </td>
    <td style="text-align:left;"> Unstandardized </td>
    <td style="text-align:left;"> Apex Legends </td>
-   <td style="text-align:right;"> 0.43 </td>
-   <td style="text-align:right;"> 0.33 </td>
-   <td style="text-align:right;"> 0.54 </td>
+   <td style="text-align:right;"> 0.46 </td>
+   <td style="text-align:right;"> 0.35 </td>
+   <td style="text-align:right;"> 0.56 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Aggressive affect </td>
@@ -460,7 +460,7 @@ params %>%
    <td style="text-align:left;"> Apex Legends </td>
    <td style="text-align:right;"> 0.03 </td>
    <td style="text-align:right;"> -0.02 </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> 0.08 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Hours </td>
@@ -468,8 +468,8 @@ params %>%
    <td style="text-align:left;"> Cross-lagged </td>
    <td style="text-align:left;"> Unstandardized </td>
    <td style="text-align:left;"> Apex Legends </td>
-   <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> -0.33 </td>
+   <td style="text-align:right;"> -0.01 </td>
+   <td style="text-align:right;"> -0.34 </td>
    <td style="text-align:right;"> 0.32 </td>
   </tr>
   <tr>
@@ -498,8 +498,8 @@ params %>%
    <td style="text-align:left;"> Autoregression </td>
    <td style="text-align:left;"> Unstandardized </td>
    <td style="text-align:left;"> Outriders </td>
-   <td style="text-align:right;"> 0.56 </td>
-   <td style="text-align:right;"> 0.48 </td>
+   <td style="text-align:right;"> 0.55 </td>
+   <td style="text-align:right;"> 0.47 </td>
    <td style="text-align:right;"> 0.64 </td>
   </tr>
   <tr>
@@ -518,7 +518,7 @@ params %>%
    <td style="text-align:left;"> Cross-lagged </td>
    <td style="text-align:left;"> Unstandardized </td>
    <td style="text-align:left;"> Outriders </td>
-   <td style="text-align:right;"> -0.03 </td>
+   <td style="text-align:right;"> -0.02 </td>
    <td style="text-align:right;"> -0.14 </td>
    <td style="text-align:right;"> 0.09 </td>
   </tr>
@@ -528,7 +528,7 @@ params %>%
    <td style="text-align:left;"> Autoregression </td>
    <td style="text-align:left;"> Unstandardized </td>
    <td style="text-align:left;"> Outriders </td>
-   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.03 </td>
    <td style="text-align:right;"> -0.20 </td>
    <td style="text-align:right;"> 0.25 </td>
   </tr>
@@ -548,9 +548,9 @@ params %>%
    <td style="text-align:left;"> Autoregression </td>
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Apex Legends </td>
-   <td style="text-align:right;"> 0.44 </td>
+   <td style="text-align:right;"> 0.43 </td>
    <td style="text-align:right;"> 0.34 </td>
-   <td style="text-align:right;"> 0.53 </td>
+   <td style="text-align:right;"> 0.52 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Aggressive affect </td>
@@ -570,7 +570,7 @@ params %>%
    <td style="text-align:left;"> Apex Legends </td>
    <td style="text-align:right;"> 0.00 </td>
    <td style="text-align:right;"> -0.18 </td>
-   <td style="text-align:right;"> 0.18 </td>
+   <td style="text-align:right;"> 0.17 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Aggressive affect </td>
@@ -588,9 +588,9 @@ params %>%
    <td style="text-align:left;"> Autoregression </td>
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Apex Legends </td>
-   <td style="text-align:right;"> 0.46 </td>
-   <td style="text-align:right;"> 0.34 </td>
-   <td style="text-align:right;"> 0.57 </td>
+   <td style="text-align:right;"> 0.48 </td>
+   <td style="text-align:right;"> 0.38 </td>
+   <td style="text-align:right;"> 0.59 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Hours </td>
@@ -599,8 +599,8 @@ params %>%
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Apex Legends </td>
    <td style="text-align:right;"> 0.00 </td>
-   <td style="text-align:right;"> -0.17 </td>
-   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> -0.18 </td>
+   <td style="text-align:right;"> 0.18 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Aggressive affect </td>
@@ -618,49 +618,19 @@ params %>%
    <td style="text-align:left;"> Covariance </td>
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Apex Legends </td>
-   <td style="text-align:right;"> 0.01 </td>
-   <td style="text-align:right;"> -0.12 </td>
-   <td style="text-align:right;"> 0.14 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Hours </td>
-   <td style="text-align:left;"> Hours </td>
-   <td style="text-align:left;"> Autoregression </td>
-   <td style="text-align:left;"> Standardized </td>
-   <td style="text-align:left;"> Outriders </td>
-   <td style="text-align:right;"> 0.70 </td>
-   <td style="text-align:right;"> 0.63 </td>
-   <td style="text-align:right;"> 0.77 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Aggressive affect </td>
-   <td style="text-align:left;"> Hours </td>
-   <td style="text-align:left;"> Cross-lagged </td>
-   <td style="text-align:left;"> Standardized </td>
-   <td style="text-align:left;"> Outriders </td>
    <td style="text-align:right;"> 0.02 </td>
-   <td style="text-align:right;"> -0.04 </td>
-   <td style="text-align:right;"> 0.07 </td>
+   <td style="text-align:right;"> -0.12 </td>
+   <td style="text-align:right;"> 0.15 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Hours </td>
-   <td style="text-align:left;"> Aggressive affect </td>
-   <td style="text-align:left;"> Cross-lagged </td>
-   <td style="text-align:left;"> Standardized </td>
-   <td style="text-align:left;"> Outriders </td>
-   <td style="text-align:right;"> -0.04 </td>
-   <td style="text-align:right;"> -0.20 </td>
-   <td style="text-align:right;"> 0.13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Aggressive affect </td>
-   <td style="text-align:left;"> Aggressive affect </td>
+   <td style="text-align:left;"> Hours </td>
    <td style="text-align:left;"> Autoregression </td>
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Outriders </td>
-   <td style="text-align:right;"> 0.03 </td>
-   <td style="text-align:right;"> -0.24 </td>
-   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.69 </td>
+   <td style="text-align:right;"> 0.62 </td>
+   <td style="text-align:right;"> 0.77 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Aggressive affect </td>
@@ -679,6 +649,26 @@ params %>%
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Outriders </td>
    <td style="text-align:right;"> -0.03 </td>
+   <td style="text-align:right;"> -0.20 </td>
+   <td style="text-align:right;"> 0.13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Aggressive affect </td>
+   <td style="text-align:left;"> Aggressive affect </td>
+   <td style="text-align:left;"> Autoregression </td>
+   <td style="text-align:left;"> Standardized </td>
+   <td style="text-align:left;"> Outriders </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> -0.24 </td>
+   <td style="text-align:right;"> 0.30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hours </td>
+   <td style="text-align:left;"> Aggressive affect </td>
+   <td style="text-align:left;"> Cross-lagged </td>
+   <td style="text-align:left;"> Standardized </td>
+   <td style="text-align:left;"> Outriders </td>
+   <td style="text-align:right;"> -0.02 </td>
    <td style="text-align:right;"> -0.14 </td>
    <td style="text-align:right;"> 0.09 </td>
   </tr>
@@ -699,7 +689,7 @@ params %>%
    <td style="text-align:left;"> Standardized </td>
    <td style="text-align:left;"> Outriders </td>
    <td style="text-align:right;"> -0.10 </td>
-   <td style="text-align:right;"> -0.34 </td>
+   <td style="text-align:right;"> -0.35 </td>
    <td style="text-align:right;"> 0.14 </td>
   </tr>
 </tbody>

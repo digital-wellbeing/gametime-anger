@@ -1,7 +1,7 @@
 --- 
 title: "Game play and aggressive affect | Online analysis supplement"
 author: "Niklas Johannes, Matti Vuorre, Kristoffer Magnusson, & Andy Przybylski"
-date: "2022-01-12"
+date: "2022-01-14"
 site: bookdown::bookdown_site
 output: bookdown::bs4_book
 url: https://digital-wellbeing.github.io/gametime-anger

@@ -18,8 +18,8 @@ stringr
 forcats
 lubridate
 ggdist
+ggstance
 extrafont
 janitor
-ggstance
 broom.mixed
 ggbeeswarm

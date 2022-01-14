@@ -405,7 +405,7 @@ From the original processing: These files are minimally processed versions of on
 
 ```r
 # Apex Legends
-t_al <- read_csv(here("data", "telemetry-apex-legends.csv.gz"))
+t_al <- read_csv(here("data", "telemetry_apex_legends.csv.gz"))
 
 # Select relevant variables
 t_al <- t_al %>%
@@ -421,7 +421,7 @@ t_al <- t_al %>%
   )
 
 # Outriders
-t_or <- read_csv(here("Data", "telemetry-outriders.csv.gz"))
+t_or <- read_csv(here("Data", "telemetry_outriders.csv.gz"))
 
 # Select relevant variables
 t_or <- t_or %>%
@@ -750,9 +750,9 @@ d %>%
  <thead>
   <tr>
    <th style="text-align:left;"> Characteristic </th>
-   <th style="text-align:left;"> Overall, N = 3,596 </th>
-   <th style="text-align:left;"> Apex Legends, N = 1,561 </th>
-   <th style="text-align:left;"> Outriders, N = 2,035 </th>
+   <th style="text-align:left;"> Overall, N = 3,128 </th>
+   <th style="text-align:left;"> Apex Legends, N = 1,278 </th>
+   <th style="text-align:left;"> Outriders, N = 1,850 </th>
   </tr>
  </thead>
 <tbody>
@@ -764,27 +764,27 @@ d %>%
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 0 </td>
-   <td style="text-align:left;"> 696 (19%) </td>
-   <td style="text-align:left;"> 268 (17%) </td>
-   <td style="text-align:left;"> 428 (21%) </td>
+   <td style="text-align:left;"> 548 (18%) </td>
+   <td style="text-align:left;"> 186 (15%) </td>
+   <td style="text-align:left;"> 362 (20%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 1 </td>
-   <td style="text-align:left;"> 1,025 (29%) </td>
-   <td style="text-align:left;"> 202 (13%) </td>
-   <td style="text-align:left;"> 823 (40%) </td>
+   <td style="text-align:left;"> 919 (29%) </td>
+   <td style="text-align:left;"> 169 (13%) </td>
+   <td style="text-align:left;"> 750 (41%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 2 </td>
-   <td style="text-align:left;"> 656 (18%) </td>
-   <td style="text-align:left;"> 217 (14%) </td>
-   <td style="text-align:left;"> 439 (22%) </td>
+   <td style="text-align:left;"> 589 (19%) </td>
+   <td style="text-align:left;"> 173 (14%) </td>
+   <td style="text-align:left;"> 416 (22%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> 3 </td>
-   <td style="text-align:left;"> 1,219 (34%) </td>
-   <td style="text-align:left;"> 874 (56%) </td>
-   <td style="text-align:left;"> 345 (17%) </td>
+   <td style="text-align:left;"> 1,072 (34%) </td>
+   <td style="text-align:left;"> 750 (59%) </td>
+   <td style="text-align:left;"> 322 (17%) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Any waves with play </td>
@@ -794,15 +794,15 @@ d %>%
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> TRUE </td>
-   <td style="text-align:left;"> 2,900 (81%) </td>
-   <td style="text-align:left;"> 1,293 (83%) </td>
-   <td style="text-align:left;"> 1,607 (79%) </td>
+   <td style="text-align:left;"> 2,580 (82%) </td>
+   <td style="text-align:left;"> 1,092 (85%) </td>
+   <td style="text-align:left;"> 1,488 (80%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> FALSE </td>
-   <td style="text-align:left;"> 696 (19%) </td>
-   <td style="text-align:left;"> 268 (17%) </td>
-   <td style="text-align:left;"> 428 (21%) </td>
+   <td style="text-align:left;"> 548 (18%) </td>
+   <td style="text-align:left;"> 186 (15%) </td>
+   <td style="text-align:left;"> 362 (20%) </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
@@ -841,9 +841,9 @@ d %>%
  <thead>
   <tr>
    <th style="text-align:left;"> Characteristic </th>
-   <th style="text-align:left;"> Overall, N = 8,700 </th>
-   <th style="text-align:left;"> Apex Legends, N = 3,879 </th>
-   <th style="text-align:left;"> Outriders, N = 4,821 </th>
+   <th style="text-align:left;"> Overall, N = 7,740 </th>
+   <th style="text-align:left;"> Apex Legends, N = 3,276 </th>
+   <th style="text-align:left;"> Outriders, N = 4,464 </th>
   </tr>
  </thead>
 <tbody>
@@ -861,9 +861,9 @@ d %>%
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Unknown </td>
-   <td style="text-align:left;"> 4,710 </td>
-   <td style="text-align:left;"> 2,150 </td>
-   <td style="text-align:left;"> 2,560 </td>
+   <td style="text-align:left;"> 3,883 </td>
+   <td style="text-align:left;"> 1,625 </td>
+   <td style="text-align:left;"> 2,258 </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
@@ -900,9 +900,9 @@ d %>%
  <thead>
   <tr>
    <th style="text-align:left;"> Characteristic </th>
-   <th style="text-align:left;"> Overall, N = 8,700 </th>
-   <th style="text-align:left;"> Apex Legends, N = 3,879 </th>
-   <th style="text-align:left;"> Outriders, N = 4,821 </th>
+   <th style="text-align:left;"> Overall, N = 7,740 </th>
+   <th style="text-align:left;"> Apex Legends, N = 3,276 </th>
+   <th style="text-align:left;"> Outriders, N = 4,464 </th>
   </tr>
  </thead>
 <tbody>
@@ -914,9 +914,9 @@ d %>%
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Unknown </td>
-   <td style="text-align:left;"> 7,369 </td>
-   <td style="text-align:left;"> 3,200 </td>
-   <td style="text-align:left;"> 4,169 </td>
+   <td style="text-align:left;"> 6,421 </td>
+   <td style="text-align:left;"> 2,607 </td>
+   <td style="text-align:left;"> 3,814 </td>
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">

@@ -87,22 +87,22 @@ table1 %>%
  <thead>
   <tr>
    <th style="text-align:left;"> Characteristic </th>
-   <th style="text-align:left;"> Overall, N = 2,900 </th>
-   <th style="text-align:left;"> Apex Legends, N = 1,293 </th>
-   <th style="text-align:left;"> Outriders, N = 1,607 </th>
+   <th style="text-align:left;"> Overall, N = 2,580 </th>
+   <th style="text-align:left;"> Apex Legends, N = 1,092 </th>
+   <th style="text-align:left;"> Outriders, N = 1,488 </th>
   </tr>
  </thead>
 <tbody>
   <tr>
    <td style="text-align:left;"> Age </td>
-   <td style="text-align:left;"> 33 (24, 41) </td>
+   <td style="text-align:left;"> 33 (25, 41) </td>
    <td style="text-align:left;"> 25 (20, 32) </td>
    <td style="text-align:left;"> 38 (32, 45) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Missing </td>
-   <td style="text-align:left;"> 8 </td>
-   <td style="text-align:left;"> 6 </td>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:left;"> 3 </td>
    <td style="text-align:left;"> 2 </td>
   </tr>
   <tr>
@@ -113,44 +113,44 @@ table1 %>%
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Man </td>
-   <td style="text-align:left;"> 2,586 (89%) </td>
-   <td style="text-align:left;"> 1,114 (87%) </td>
-   <td style="text-align:left;"> 1,472 (92%) </td>
+   <td style="text-align:left;"> 2,308 (90%) </td>
+   <td style="text-align:left;"> 948 (87%) </td>
+   <td style="text-align:left;"> 1,360 (92%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Non-binary / third gender </td>
-   <td style="text-align:left;"> 40 (1.4%) </td>
-   <td style="text-align:left;"> 25 (1.9%) </td>
-   <td style="text-align:left;"> 15 (0.9%) </td>
+   <td style="text-align:left;"> 38 (1.5%) </td>
+   <td style="text-align:left;"> 23 (2.1%) </td>
+   <td style="text-align:left;"> 15 (1.0%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Prefer not to say </td>
-   <td style="text-align:left;"> 44 (1.5%) </td>
-   <td style="text-align:left;"> 26 (2.0%) </td>
-   <td style="text-align:left;"> 18 (1.1%) </td>
+   <td style="text-align:left;"> 31 (1.2%) </td>
+   <td style="text-align:left;"> 15 (1.4%) </td>
+   <td style="text-align:left;"> 16 (1.1%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Woman </td>
-   <td style="text-align:left;"> 222 (7.7%) </td>
-   <td style="text-align:left;"> 122 (9.5%) </td>
-   <td style="text-align:left;"> 100 (6.2%) </td>
+   <td style="text-align:left;"> 198 (7.7%) </td>
+   <td style="text-align:left;"> 103 (9.5%) </td>
+   <td style="text-align:left;"> 95 (6.4%) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Missing </td>
-   <td style="text-align:left;"> 8 </td>
-   <td style="text-align:left;"> 6 </td>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:left;"> 3 </td>
    <td style="text-align:left;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Experience </td>
-   <td style="text-align:left;"> 24 (15, 30) </td>
-   <td style="text-align:left;"> 16 (10, 24) </td>
+   <td style="text-align:left;"> 25 (16, 31) </td>
+   <td style="text-align:left;"> 17 (10, 25) </td>
    <td style="text-align:left;"> 30 (22, 35) </td>
   </tr>
   <tr>
    <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Missing </td>
-   <td style="text-align:left;"> 16 </td>
    <td style="text-align:left;"> 11 </td>
+   <td style="text-align:left;"> 6 </td>
    <td style="text-align:left;"> 5 </td>
   </tr>
 </tbody>
@@ -223,16 +223,16 @@ retention %>%
   <tr>
    <td style="text-align:left;"> Apex Legends </td>
    <td style="text-align:left;"> 900,000 </td>
-   <td style="text-align:left;"> 1,287 (0.14%) </td>
-   <td style="text-align:left;"> 486 (37.76%) </td>
-   <td style="text-align:left;"> 268 (55.14%) </td>
+   <td style="text-align:left;"> 1,053 (0.12%) </td>
+   <td style="text-align:left;"> 385 (36.56%) </td>
+   <td style="text-align:left;"> 219 (56.88%) </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Outriders </td>
    <td style="text-align:left;"> 90,000 </td>
-   <td style="text-align:left;"> 1,605 (1.78%) </td>
-   <td style="text-align:left;"> 422 (26.29%) </td>
-   <td style="text-align:left;"> 409 (96.92%) </td>
+   <td style="text-align:left;"> 1,483 (1.65%) </td>
+   <td style="text-align:left;"> 371 (25.02%) </td>
+   <td style="text-align:left;"> 359 (96.77%) </td>
   </tr>
 </tbody>
 </table>
@@ -371,11 +371,11 @@ d %>%
 <tbody>
   <tr>
    <td style="text-align:right;"> 0.003 </td>
-   <td style="text-align:right;"> 11.353 </td>
-   <td style="text-align:right;"> 13.008 </td>
-   <td style="text-align:right;"> 13.992 </td>
-   <td style="text-align:right;"> 14.662 </td>
-   <td style="text-align:right;"> 16.876 </td>
+   <td style="text-align:right;"> 11.292 </td>
+   <td style="text-align:right;"> 13.033 </td>
+   <td style="text-align:right;"> 13.997 </td>
+   <td style="text-align:right;"> 14.666 </td>
+   <td style="text-align:right;"> 16.694 </td>
    <td style="text-align:right;"> 49.287 </td>
   </tr>
 </tbody>
@@ -562,15 +562,15 @@ d %>%
 <tbody>
   <tr>
    <td style="text-align:left;"> FALSE </td>
-   <td style="text-align:right;"> 8465 </td>
-   <td style="text-align:left;"> 97.3% </td>
-   <td style="text-align:left;"> 97.3% </td>
+   <td style="text-align:right;"> 7519 </td>
+   <td style="text-align:left;"> 97.1% </td>
+   <td style="text-align:left;"> 97.2% </td>
   </tr>
   <tr>
    <td style="text-align:left;"> TRUE </td>
-   <td style="text-align:right;"> 233 </td>
-   <td style="text-align:left;"> 2.7% </td>
-   <td style="text-align:left;"> 2.7% </td>
+   <td style="text-align:right;"> 219 </td>
+   <td style="text-align:left;"> 2.8% </td>
+   <td style="text-align:left;"> 2.8% </td>
   </tr>
   <tr>
    <td style="text-align:left;"> NA </td>
