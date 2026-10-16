@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: Code and data supplement to "Time spent playing two online shooters has No measurable effect on aggressive affect"
+version: 1.0.0
+license: CC-BY-4.0
+type: dataset
+abstract: |
+  There is a lively debate whether playing games that feature armed combat and competition (often referred to as violent video games) has measurable effects on aggression. Unfortunately, that debate has produced insights that remain preliminary without accurate behavioral data. Here, we present a secondary analysis of the most authoritative longitudinal data set available on the issue from our previous study (Vuorre et al., 2021). We analyzed objective in-game behavior, provided by video game companies, in 2,580 players over six weeks. Specifically, we asked how time spent playing two popular online shooters, Apex Legends (PEGI 16) and Outriders (PEGI 18), affected self-reported feelings of anger (i.e., aggressive affect). We found that playing these games did not increase aggressive affect; the cross-lagged association between game time and aggressive affect was virtually zero. Our results showcase the value of obtaining accurate industry data as well as an open science of video games and mental health that allows cumulative knowledge building.
+message: "Please cite as indicated."
+authors:
+  - family-names: Johannes
+    given-names: Niklas
+    orcid: https://orcid.org/0000-0001-6612-2842
+  - family-names: Vuorre
+    given-names: Matti
+    orcid: https://orcid.org/0000-0001-5052-066X
+    affiliation: Tilburg University
+  - family-names: Magnusson
+    given-names: Kristoffer
+    orcid: https://orcid.org/0000-0003-0713-0556
+    affiliation: Karolinska Institutet
+  - family-names: Przybylski
+    given-names: Andrew
+    orcid: https://orcid.org/0000-0001-5547-2185
+    affiliation: University of Oxford
+keywords:
+  - psychology
